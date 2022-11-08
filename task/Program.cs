@@ -6,9 +6,12 @@
 int numElem = new Random().Next(2, 6);
 
 string[] array = GetArray(numElem);
-Console.WriteLine($"Полученный массив -- [{String.Join(" ", array)}]");
+Console.Write("Полученный массив -- ");
+PrintArray(array);
 string[] array1 = arrSetLenElem(array);
-Console.WriteLine($"Преобразованный массив -- [{String.Join(" ", array1)}]");
+Console.Write($"Преобразованный массив -- ");
+PrintArray(array1);
+
 
 string[] GetArray(int num)  // функция заполнения массива
 {
@@ -25,15 +28,24 @@ string[] GetArray(int num)  // функция заполнения массив�
 
 string[] arrSetLenElem(string[] array)  // функция принимает массив и выдаёт новый массив с элементами, которые равны или меньше 3 символов.
 {   
-    var resultList = array.ToList();
+    string[] result = new string[array.Length];
+    int count = 0;
     for (int i = 0; i < array.Length; i++)
     {
-       if (array[i].Length > 3)
+       if (array[i].Length <= 3)
        {
-            resultList.Remove(array[i]);
+            result[count] = array[i];
+            count++;
        }
-    }
-    var result = resultList.ToArray();  
-
+    }  
     return result;
+}
+
+void PrintArray(string[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write($"{array[i]} ");
+    }
+    Console.WriteLine();
 }
